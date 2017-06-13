@@ -18,7 +18,8 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 - **Gist**:
      - This paper introduce a layer called Correlation layer which can perform multiplicative patch comparsions between two feature maps and return a new feature map representing matching cost, this layer make it possible to incorporate explicit patch comparsion into neural network.
      - They also propose FlownetC and FlownetS which have VGG-like structure to model optical flow end-to-end.
-- **Significance**: It's the first paper which propose end-to-end optical flow estimation with fully convolutional networks. Compared with traditional patch-based algorithm, flownet is much faster when using GPU, but the performance is worse.
+- **Significance**: 
+	- It's the first paper which propose end-to-end optical flow estimation with fully convolutional networks. Compared with traditional patch-based algorithm, flownet is much faster when using GPU, but the performance is worse.
 
 #### FlowNet 2.0: Evolution of Optical Flow Estimation with Deep Networks [[Paper]](https://arxiv.org/abs/1612.01925)[[Code]](https://github.com/lmb-freiburg/flownet2)
 - **Type**: End2End Learning
@@ -26,7 +27,19 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
      - Introduce a data schedule : pretrain on FlyingChair dataset(1.2M iteration) and finetune on Flyingthing3D dataset(0.5M iteration).
      - Propose warping layer which warp second frame according to optical flow. Warping layer help to model large displacement which correlation layer cannot handle.
      - Propose Flownet2 which stacked by multiple flownet, this stacked architecture includes warping of the second image with intermediate optical flow. Although flownet2 has more parameters, it still show strong capacity of generalization.
-- **Significance**: For now, flownet2 rank 6th in KITTI 2015 optical flow benchmark and outperform most traditional patch-based optical flow algorithms.
+- **Significance**: 
+	- For now, flownet2 ranks 6th in KITTI 2015 optical flow benchmark and outperform most traditional patch-based optical flow algorithms.
+
+#### Improved Stereo Matching with Constant Highway Networks and Reﬂective Conﬁdence Learning[[Paper]](http://scholar.google.de/scholar?q=Improved%20Stereo%20Matching%20with%20Constant%20Highway%20Networks%20and%20Reflective%20Loss)[[Code]](https://github.com/amitshaked/resmatch)
+- **Type**: Pipeline
+- **Gist**:
+	- Incorporating constant highway skip connection into matching network.
+	- Employ a fully convolutional network to postprocess the matching cost, which take place of conventional 'winner takes all' stragety and cause the greatest improvement.
+	- Propose reflective loss for training model to estimate confidence scores of the output. The loss is quite simple, if the prediciton is correct, i.e differs from the ground truth by less than one pixel, the sample is considered positive, otherwise negative.
+	- The authors make an observation that batch normalization has a detrimental effect on matching network.
+- **Significance**:
+	- It shows that ResNet is ineffective for matching.
+
 
 ## Dataset
 
