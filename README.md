@@ -30,16 +30,24 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 - **Significance**: 
 	- For now, flownet2 ranks 6th in KITTI 2015 optical flow benchmark and outperform most traditional patch-based optical flow algorithms.
 
-#### Improved Stereo Matching with Constant Highway Networks and Reﬂective Conﬁdence Learning[[Paper]](http://scholar.google.de/scholar?q=Improved%20Stereo%20Matching%20with%20Constant%20Highway%20Networks%20and%20Reflective%20Loss)[[Code]](https://github.com/amitshaked/resmatch)
+#### Improved Stereo Matching with Constant Highway Networks and Reﬂective Conﬁdence Learning[[Paper]](https://arxiv.org/abs/1701.00165)[[Code]](https://github.com/amitshaked/resmatch)
 - **Type**: Pipeline
 - **Gist**:
 	- Incorporating constant highway skip connection into matching network.
-	- Employ a fully convolutional network to postprocess the matching cost, which take place of conventional 'winner takes all' stragety and cause the greatest improvement.
+	- Employ a fully convolutional network to postprocess the matching cost, which take place of conventional 'winner takes all' stragety and cause the greatest improvement of this work.
 	- Propose reflective loss for training model to estimate confidence scores of the output. The loss is quite simple, if the prediciton is correct, i.e differs from the ground truth by less than one pixel, the sample is considered positive, otherwise negative.
 	- The authors make an observation that batch normalization has a detrimental effect on matching network.
 - **Significance**:
-	- It shows that ResNet is ineffective for matching.
+	- It shows that ResNet is ineffective for matching. That is quite unexpected.
 
+#### End-to-End Learning of Geometry and Context for Deep Stereo Regression [[Paper]](https://scholar.google.de/scholar?q=End-to-End%20Learning%20of%20Geometry%20and%20Context%20for%20Deep%20Stereo%20Regression)
+- **Type**: End2End learning
+- **Gist**:
+	- Instead of using distance metric to compute cost volume, this paper introduce a network architecture where firstly employs convolutional network to extract deep unary representation of stereo image pair, and then concat each unary feature with their corresponding unary feature from the opposite image across each disparity level, and packing these into a 4D tensor -- [height * width * (max displacement +1) * feature size]. Compared with distance metric like dot product which restricts the network to only learning relative representations between features, this method does not collapse feature dimension and has capacity of learing absolute feature representations.
+	- Employ 3D convolutions to learn to regularize the cost volume
+	- Propose soft argmin, this operation takes the sum of each possible disparity, weighted by the probability that  estimated by the model.
+- **Significance**:
+	- The new method of computing cost volume overcome the limitation of distance metric.
 
 ## Dataset
 
