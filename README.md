@@ -36,7 +36,7 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 	- Incorporating constant highway skip connection into matching network.
 	- Employ a fully convolutional network to postprocess the matching cost, which take place of conventional 'winner takes all' stragety and cause the greatest improvement of this work.
 	- Propose reflective loss for training model to estimate confidence scores of the output. The loss is quite simple, if the prediciton is correct, i.e differs from the ground truth by less than one pixel, the sample is considered positive, otherwise negative.
-	- The authors make an observation that batch normalization has a detrimental effect on matching network.
+	- The authors make an observation that batch normalization has a detrimental effect on matching network. We need more discussion about the building block of matching network.
 - **Significance**:
 	- It shows that ResNet is ineffective for matching. That is quite unexpected.
 
@@ -48,6 +48,15 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 	- Propose soft argmin, this operation takes the sum of each possible disparity, weighted by the probability that  estimated by the model.
 - **Significance**:
 	- The new method of computing cost volume overcome the limitation of distance metric.
+
+#### Detect, Replace, Reﬁne: Deep Structured Prediction For Pixel Wise Labeling [[Paper]](https://arxiv.org/pdf/1612.04770.pdf) [[Code]](https://github.com/gidariss/DRR_struct_pred)
+- **Type**: Post processing
+- **Gist**:
+	- Employ a fully convolutional network to post process the initial estimation of traditional patch matching approaches.
+	- Motivation: 1. Deep convolutional networks alone do not capture fine-grained structures, due to multiple consecutive down-sampling operations, but they can employ context 2. Patch matching approaches do not take into consideration the global information, but they put much attention on capturing details. This work overcome these limiations thourgh combining the two kinds of methods.
+
+- **Significance**:
+	- Prompts a guess that maybe End2End learning is not the optimal solution of stereo matching task.
 
 ## Dataset
 
