@@ -53,10 +53,19 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 - **Type**: Post processing
 - **Gist**:
 	- Employ a fully convolutional network to post process the initial estimation of traditional patch matching approaches.
-	- Motivation: 1. Deep convolutional networks alone do not capture fine-grained structures, due to multiple consecutive down-sampling operations, but they can employ context 2. Patch matching approaches do not take into consideration the global information, but they put much attention on capturing details. This work overcome these limiations thourgh combining the two kinds of methods.
+	- Motivation: 1. Deep convolutional networks alone do not capture fine-grained structures, due to multiple consecutive down-sampling operations, but they can learn to employ context 2. Patch matching approaches do not take into consideration the global information, but they put much attention on capturing details. This work overcome these limiations thourgh combining the two kinds of methods.
 
 - **Significance**:
-	- Prompts a guess that maybe End2End learning is not the optimal solution of stereo matching task.
+	- Propose a way to combine traditional algorithm and neural network.
+
+#### Optical Flow Estimation using a Spatial Pyramid Network [[Paper]](https://arxiv.org/pdf/1611.00850.pdf)[[Code]](https://github.com/anuragranj/spynet)
+- **Type**: End2End Learning
+- **Gist**:
+	- Point out that a convolutional layer can not learn a meaningful filter to recognize large motions, if its window in one image does not overlap with related image pixels at the next time instant.
+	- Adopt a traditional coarse-to-fine approach using spatial pyramid to estimate optical flow, and employ warp operation between pyramid levels to help the neural network to learn large motions.
+- **Significance**:
+	* Real-time optical flow estimation.
+	* The parameter size of SpyNet is 96% smaller than Flownet, which makes it possible to deployed Spynet on mobile device.
 
 ## Dataset
 
