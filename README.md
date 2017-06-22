@@ -67,6 +67,13 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 	* Real-time optical flow estimation.
 	* The parameter size of SpyNet is 96% smaller than Flownet, which makes it possible to deployed Spynet on mobile device.
 
+#### Back to Basics: Unsupervised Learning of Optical Flow via Brightness Constancy and Motion Smoothness [[Paper]](https://arxiv.org/pdf/1608.05842.pdf)
+- **Type**: Unsupervised Learning
+- **Gist**:
+	- Propose an unsupervised learning approach where it warps second frame according to optical flow estimated by convnet and uses photometric to measure the similarity between the first frame and the warped frame so as to generate supervising signals for learning algorithms.
+- **Significance**:
+	- Invent an elegant method to get supervising signals, which can reduce reliance of learning algorithms on big dataset.
+
 ## Dataset
 
 | Dataset | Source | Optical flow | Disparity | #Training frames | #Testing frames|
