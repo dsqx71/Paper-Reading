@@ -16,10 +16,10 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 #### FlowNet: Learning Optical Flow with Convolutional Networks [[Paper]](https://arxiv.org/abs/1504.06852)[[Code]](https://lmb.informatik.uni-freiburg.de/resources/binaries/)
 - **Type**: End2End Learning
 - **Gist**:
-     - This paper introduce a layer called Correlation layer which can perform multiplicative patch comparsions between two feature maps and return a new feature map representing matching cost, this layer make it possible to incorporate explicit patch comparsion into neural network.
+     - This paper introduces a layer called Correlation layer which can perform multiplicative patch comparisons between two feature maps and return a new feature map representing the matching cost, this layer makes it possible to incorporate explicit patch comparisons into a neural network.
      - They also propose FlownetC and FlownetS which have VGG-like structure to model optical flow end-to-end.
 - **Significance**: 
-	- It's the first paper which propose end-to-end optical flow estimation with fully convolutional networks. Compared with traditional patch-based algorithm, flownet is much faster when using GPU, but the performance is worse.
+	- It's the first paper which proposes end-to-end optical flow estimation with fully convolutional networks. Compared with traditional patch-based algorithms, FlowNet is much faster when using GPU, but the performance is worse.
 
 #### FlowNet 2.0: Evolution of Optical Flow Estimation with Deep Networks [[Paper]](https://arxiv.org/abs/1612.01925)[[Code]](https://github.com/lmb-freiburg/flownet2)
 - **Type**: End2End Learning
@@ -34,18 +34,20 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 - **Type**: Pipeline
 - **Gist**:
 	- Incorporating constant highway skip connection into matching network.
-	- Employ a fully convolutional network to postprocess the matching cost, which take place of conventional 'winner takes all' stragety and cause the greatest improvement of this work.
-	- Propose reflective loss for training model to estimate confidence scores of the output. The loss is quite simple, if the prediciton is correct, i.e differs from the ground truth by less than one pixel, the sample is considered positive, otherwise negative.
-	- The authors make an observation that batch normalization has a detrimental effect on matching network. We need more discussion about the building block of matching network.
+	- Employ a fully convolutional network to post-process the matching cost, which takes place of conventional 'winner takes all' stragety and cause the greatest improvement of this work.
+	- Propose reflective loss for training model to estimate confidence scores of the output. The loss is quite simple, if the prediction is correct, i.e differs from the ground truth by less than one pixel, the sample is considered positive, otherwise negative.
+	- The authors make an observation that batch normalization has a detrimental effect on matching networks. 
 - **Significance**:
 	- It shows that ResNet is ineffective for matching. That is quite unexpected.
+- **Weakness**:
+	- The authors don't why vanilla residual block didn't work.
 
 #### End-to-End Learning of Geometry and Context for Deep Stereo Regression [[Paper]](https://scholar.google.de/scholar?q=End-to-End%20Learning%20of%20Geometry%20and%20Context%20for%20Deep%20Stereo%20Regression)
 - **Type**: End2End learning
 - **Gist**:
-	- Instead of using distance metric to compute cost volume, this paper introduce a network architecture where firstly employs convolutional network to extract deep unary representation of stereo image pair, and then concat each unary feature with their corresponding unary feature from the opposite image across each disparity level, and packing these into a 4D tensor -- [height * width * (max displacement +1) * feature size]. Compared with distance metric like dot product which restricts the network to only learning relative representations between features, this method does not collapse feature dimension and has capacity of learing absolute feature representations.
+	- Instead of using distance metric to compute cost volume, this paper introduce a network architecture where firstly employs convolutional network to extract deep unary representation of stereo image pair, and then concat each unary feature with their corresponding unary feature from the opposite image across each disparity level, and packing these into a 4D tensor -- [height * width * (max displacement +1) * feature size]. Compared with distance metric like dot product which restricts the network to only learning relative representations between features, this method does not collapse feature dimension and has the capacity of learning absolute feature representations.
 	- Employ 3D convolutions to learn to regularize the cost volume
-	- Propose soft argmin, this operation takes the sum of each possible disparity, weighted by the probability that  estimated by the model.
+	- Propose **soft argmin**, this operation takes the sum of each possible disparity, weighted by the probability that  estimated by the model.
 - **Significance**:
 	- The new method of computing cost volume overcome the limitation of distance metric.
 
@@ -61,18 +63,29 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 #### Optical Flow Estimation using a Spatial Pyramid Network [[Paper]](https://arxiv.org/pdf/1611.00850.pdf)[[Code]](https://github.com/anuragranj/spynet)
 - **Type**: End2End Learning
 - **Gist**:
-	- Point out that a convolutional layer can not learn a meaningful filter to recognize large motions, if its window in one image does not overlap with related image pixels at the next time instant.
-	- Adopt a traditional coarse-to-fine approach using spatial pyramid to estimate optical flow, and employ warp operation between pyramid levels to help the neural network to learn large motions.
+	- Point out that a convolutional layer can not learn a meaningful filter to recognize large motions if its window in one image does not overlap with related image pixels at the next time instant.
+	- Adopt a traditional coarse-to-fine approach using multi-resolution pyramids to estimate optical flow, and employ warp operation between pyramid levels to help the neural network to learn large motions.
 - **Significance**:
 	* Real-time optical flow estimation.
-	* The parameter size of SpyNet is 96% smaller than Flownet, which makes it possible to deployed Spynet on mobile device.
+	* The parameter size of SpyNet is 96% smaller than FlowNet, which makes it possible to deploy Spynet on mobile devices.
+- **Weakness**:
+	* Coarse pyramid level is only able to capture large object with large displacement, yet it cannot estimate fast-moving small objects.
 
 #### Back to Basics: Unsupervised Learning of Optical Flow via Brightness Constancy and Motion Smoothness [[Paper]](https://arxiv.org/pdf/1608.05842.pdf)
 - **Type**: Unsupervised Learning
 - **Gist**:
-	- Propose an unsupervised learning approach where it warps second frame according to optical flow estimated by convnet and uses photometric to measure the similarity between the first frame and the warped frame so as to generate supervising signals for learning algorithms.
+	- Propose an unsupervised learning approach where it warps the second frame according to optical flow estimated by convnet and uses photometric to measure the similarity between the first frame and the warped frame so as to generate supervising signals for learning algorithms.
 - **Significance**:
-	- Invent an elegant method to get supervising signals, which can reduce reliance of learning algorithms on big dataset.
+	- Invent an elegant method to get supervising signals, which can reduce the reliance of learning algorithms on optical flow dataset.
+- **Weakness**:
+	- Due to occlusion, warped framed cannot perfectly match the first frame. Therefore, in many cases, the supervising signals are not very meaningful.
+
+#### S2F: Slow-To-Fast Interpolator Flow [[Paper]](http://vision.ucla.edu/papers/yangS17.pdf)
+- **Type**: Post-processing
+- **Gist**:
+	- The paper gives an explanation why coarse-to-fine approaches cannot predict large motions of small objects -- Coarse pyramid levels don't have enough resolution to capture small objects, meanwhile, region of interest in fine-scale pyramid isn't large enough to recognize large displacement.
+
+
 
 ## Dataset
 
@@ -90,8 +103,3 @@ Note that, official stereo testing set of Sintel hasn't been released so far.
 #### Comparsions of available dataset
 - Table 1 of  [A Large Dataset to Train Convolutional Networks for Disparity, Optical Flow, and Scene Flow Estimation](https://lmb.informatik.uni-freiburg.de/Publications/2016/MIFDB16/)
 - Figure 3 of  [Supplementary Material for "FlowNet 2.0: Evolution of Optical Flow Estimation with Deep Networks"](https://lmb.informatik.uni-freiburg.de/Publications/2017/IMKDB17/supplementary-FlowNet_2_0__CVPR_supplemental.pdf)
-
-
-
-
-
