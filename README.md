@@ -84,6 +84,8 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 - **Type**: Post-processing
 - **Gist**:
 	- The paper gives an explanation why coarse-to-fine approaches cannot predict large motions of small objects -- Coarse pyramid levels don't have enough resolution to capture small objects, meanwhile, region of interest in fine-scale pyramid isn't large enough to recognize large displacement.
+	- It propose design a method that is multi-scale but not multi-resolution.
+
 
 
 
