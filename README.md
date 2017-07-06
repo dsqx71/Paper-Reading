@@ -13,15 +13,18 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 
 ## Paper Reading Notes
 
-#### FlowNet: Learning Optical Flow with Convolutional Networks [[Paper]](https://arxiv.org/abs/1504.06852)[[Code]](https://lmb.informatik.uni-freiburg.de/resources/binaries/)
+#### FlowNet: Learning Optical Flow with Convolutional Networks (ICCV 2015)[[Paper]](https://arxiv.org/abs/1504.06852)[[Code]](https://lmb.informatik.uni-freiburg.de/resources/binaries/)
 - **Type**: End2End Learning
 - **Gist**:
      - This paper introduces a layer called Correlation layer which can perform multiplicative patch comparisons between two feature maps and return a new feature map representing the matching cost, this layer makes it possible to incorporate explicit patch comparisons into a neural network.
      - They also propose FlownetC and FlownetS which have VGG-like structure to model optical flow end-to-end.
-- **Significance**: 
+- **Significance**:
 	- It's the first paper which proposes end-to-end optical flow estimation with fully convolutional networks. Compared with traditional patch-based algorithms, FlowNet is much faster when using GPU, but the performance is worse.
+- **Weakness**:
+	- Flownet needs longer training process than variational methods do.
+	- Performances are not great enough.
 
-#### FlowNet 2.0: Evolution of Optical Flow Estimation with Deep Networks [[Paper]](https://arxiv.org/abs/1612.01925)[[Code]](https://github.com/lmb-freiburg/flownet2)
+#### FlowNet 2.0: Evolution of Optical Flow Estimation with Deep Networks (CVPR 2017)[[Paper]](https://arxiv.org/abs/1612.01925)[[Code]](https://github.com/lmb-freiburg/flownet2)
 - **Type**: End2End Learning
 - **Gist**:
      - Introduce a data schedule : pretrain on FlyingChair dataset(1.2M iteration) and finetune on Flyingthing3D dataset(0.5M iteration).
@@ -30,7 +33,7 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 - **Significance**: 
 	- For now, flownet2 ranks 6th in KITTI 2015 optical flow benchmark and outperform most traditional patch-based optical flow algorithms.
 
-#### Improved Stereo Matching with Constant Highway Networks and Reﬂective Conﬁdence Learning[[Paper]](https://arxiv.org/abs/1701.00165)[[Code]](https://github.com/amitshaked/resmatch)
+#### Improved Stereo Matching with Constant Highway Networks and Reﬂective Conﬁdence Learning (CVPR 2017)[[Paper]](https://arxiv.org/abs/1701.00165)[[Code]](https://github.com/amitshaked/resmatch)
 - **Type**: Pipeline
 - **Gist**:
 	- Incorporating constant highway skip connection into matching network.
@@ -42,7 +45,7 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 - **Weakness**:
 	- The authors don't why vanilla residual block didn't work.
 
-#### End-to-End Learning of Geometry and Context for Deep Stereo Regression [[Paper]](https://scholar.google.de/scholar?q=End-to-End%20Learning%20of%20Geometry%20and%20Context%20for%20Deep%20Stereo%20Regression)
+#### End-to-End Learning of Geometry and Context for Deep Stereo Regression (CVPR 2017)[[Paper]](https://scholar.google.de/scholar?q=End-to-End%20Learning%20of%20Geometry%20and%20Context%20for%20Deep%20Stereo%20Regression)
 - **Type**: End2End learning
 - **Gist**:
 	- Instead of using distance metric to compute cost volume, this paper introduce a network architecture where firstly employs convolutional network to extract deep unary representation of stereo image pair, and then concat each unary feature with their corresponding unary feature from the opposite image across each disparity level, and packing these into a 4D tensor -- [height * width * (max displacement +1) * feature size]. Compared with distance metric like dot product which restricts the network to only learning relative representations between features, this method does not collapse feature dimension and has the capacity of learning absolute feature representations.
@@ -51,7 +54,7 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 - **Significance**:
 	- The new method of computing cost volume overcome the limitation of distance metric.
 
-#### Detect, Replace, Reﬁne: Deep Structured Prediction For Pixel Wise Labeling [[Paper]](https://arxiv.org/pdf/1612.04770.pdf) [[Code]](https://github.com/gidariss/DRR_struct_pred)
+#### Detect, Replace, Reﬁne: Deep Structured Prediction For Pixel Wise Labeling (CVPR 2017)[[Paper]](https://arxiv.org/pdf/1612.04770.pdf) [[Code]](https://github.com/gidariss/DRR_struct_pred)
 - **Type**: Post processing
 - **Gist**:
 	- Employ a fully convolutional network to post process the initial estimation of traditional patch matching approaches.
@@ -60,7 +63,7 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 - **Significance**:
 	- Propose a way to combine traditional algorithm and neural network.
 
-#### Optical Flow Estimation using a Spatial Pyramid Network [[Paper]](https://arxiv.org/pdf/1611.00850.pdf)[[Code]](https://github.com/anuragranj/spynet)
+#### Optical Flow Estimation using a Spatial Pyramid Network (CVPR 2017)[[Paper]](https://arxiv.org/pdf/1611.00850.pdf)[[Code]](https://github.com/anuragranj/spynet)
 - **Type**: End2End Learning
 - **Gist**:
 	- Point out that a convolutional layer can not learn a meaningful filter to recognize large motions if its window in one image does not overlap with related image pixels at the next time instant.
@@ -71,7 +74,7 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 - **Weakness**:
 	* Coarse pyramid level is only able to capture large object with large displacement, yet it cannot estimate fast-moving small objects.
 
-#### Back to Basics: Unsupervised Learning of Optical Flow via Brightness Constancy and Motion Smoothness [[Paper]](https://arxiv.org/pdf/1608.05842.pdf)
+#### Back to Basics: Unsupervised Learning of Optical Flow via Brightness Constancy and Motion Smoothness (ECCV 2016)[[Paper]](https://arxiv.org/pdf/1608.05842.pdf)
 - **Type**: Unsupervised Learning
 - **Gist**:
 	- Propose an unsupervised learning approach where it warps the second frame according to optical flow estimated by convnet and uses photometric to measure the similarity between the first frame and the warped frame so as to generate supervising signals for learning algorithms.
@@ -80,13 +83,13 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 - **Weakness**:
 	- Due to occlusion, warped framed cannot perfectly match the first frame. Therefore, in many cases, the supervising signals are not very meaningful.
 
-#### S2F: Slow-To-Fast Interpolator Flow [[Paper]](http://vision.ucla.edu/papers/yangS17.pdf)
+#### S2F: Slow-To-Fast Interpolator Flow (CVPR 2017)[[Paper]](http://vision.ucla.edu/papers/yangS17.pdf)
 - **Type**: Post-processing
 - **Gist**:
 	- The paper gives an explanation why coarse-to-fine approaches cannot predict large motions of small objects -- Coarse pyramid levels don't have enough resolution to capture small objects, meanwhile, region of interest in fine-scale pyramid isn't large enough to recognize large displacement.
-	- It propose design a method that is multi-scale but not multi-resolution.
+	- This paper proposes a multi-scale post-processing method.
 
-
+#### CNN-based Patch Matching for Optical Flow with Thresholded Hinge Embedding Loss(CVPR 2017)[[Paper]](https://arxiv.org/abs/1607.08064)
 
 
 ## Dataset
