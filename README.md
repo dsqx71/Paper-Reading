@@ -90,7 +90,11 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 	- This paper proposes a multi-scale post-processing method.
 
 #### CNN-based Patch Matching for Optical Flow with Thresholded Hinge Embedding Loss(CVPR 2017)[[Paper]](https://arxiv.org/abs/1607.08064)
-
+- **Type**: Patch-matching
+- **Gist**:
+	- Proposes a variant of hinge loss -- add a gap in the L2 distance between matching and non-matching
+	- Presents a evaluation method to measure matching robustness.
+	- Presents a multi-scale patch matching pipeline.
 
 ## Dataset
 
