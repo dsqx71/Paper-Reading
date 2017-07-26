@@ -20,8 +20,6 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 
 - [Dataset](#dataset)
 
-- Quantitative comparisons
-
 
 
 ## Paper Reading Notes
@@ -164,7 +162,7 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 
 - **Weakness**:
 
-    - Due to occlusion, warped framed cannot perfectly match the first frame. Therefore, in many cases, the supervising signals are not very meaningful.
+    - Due to occlusion, the warped frame cannot perfectly match the first frame. Therefore, in many cases, the supervising signals are not very meaningful.
 
 
 
@@ -184,10 +182,22 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 
 - **Gist**:
 
-    - An variant of hinge loss -- add a gap in the L2 distance between matching and non-matching
+    - An variant of hinge loss -- add a gap in the L2 distance between matching and non-matching pairs
 
-    - An evaluation method to measure matching robustness.
+    - New evaluation method to measure matching robustness.
 
+#### DenseNet for dense flow(ICIP 2017)[[Paper]](https://arxiv.org/abs/1707.06316)
+
+- **Type**: Unsupervised Learning
+- **Gist**:
+	- Investigate DenseNet to learn optical flow.
+	- Make the observation that the performance of deeper models are much worse, probably because optical flow is a low-level vision problem, that doesn't need a substantially deeper network to achieve better performance.
+	- Observe that using dense blocks during upsampling is beneficial.
+	- DenseNet is less prone to overfitting, probably because of the model compactness.
+
+
+- **Weakness**：
+	- They should add an experiment where firstly fine tune DenseNet on KITTI dataset and then use the unsupervising manner.
 
 ## Dataset
 
@@ -201,6 +211,13 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 | **ChairsSDHom** |[E. Ilg et al CVPR2017](https://lmb.informatik.uni-freiburg.de/Publications/2017/IMKDB17/) | Dense | - | 20966 | 704 |
 
 Note that, official stereo testing set of Sintel hasn't been released so far.
+
+
+## Benchmark
+| Name | Type |
+|:----:|:----:|
+| [**Sintel**](http://sintel.is.tue.mpg.de/results)| Dense |
+| [**KITTI**](http://www.cvlibs.net/datasets/kitti/eval_scene_flow.php?benchmark=stereo) | Sparse |
 
 #### Comparsions of available dataset
 - Table 1 of  [A Large Dataset to Train Convolutional Networks for Disparity, Optical Flow, and Scene Flow Estimation](https://lmb.informatik.uni-freiburg.de/Publications/2016/MIFDB16/)
