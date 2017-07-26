@@ -197,6 +197,7 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 
 
 - **Weakness**：
+	- The quantative comparsion is not very meaningful, since most of other models are supervised approaches.
 	- They should add an experiment where firstly fine tune DenseNet on KITTI dataset and then use the unsupervising manner.
 
 ## Dataset
