@@ -1,4 +1,4 @@
-# Notes of Optical Flow and Stereo Matching
+# Optical Flow and Stereo Matching
 
 
 
