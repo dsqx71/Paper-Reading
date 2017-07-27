@@ -6,12 +6,6 @@ Paper reading notes and resources in the field of computer vision algorithms for
 
 
 
-## Contributing
-
-Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/pulls)
-
-
-
 ## Table of Contents
 
 
@@ -183,7 +177,6 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 - **Gist**:
 
     - An variant of hinge loss -- add a gap in the L2 distance between matching and non-matching pairs
-
     - New evaluation method to measure matching robustness.
 
 #### DenseNet for dense flow(ICIP 2017)[[Paper]](https://arxiv.org/abs/1707.06316)
@@ -199,6 +192,14 @@ Please feel free to [pull requests](https://github.com/dsqx71/Note-flow-stereo/p
 - **Weakness**：
 	- The quantative comparsion is not very meaningful, since most of other models are supervised approaches.
 	- They should add an experiment where firstly fine tune DenseNet on KITTI dataset and then use the unsupervising manner.
+
+#### InterpoNet, A brain inspired neural network for optical flow dense interpolation(CVPR 2017)[[Paper]](https://arxiv.org/abs/1611.09803)[[Code]](https://github.com/shayzweig/InterpoNet)
+- **Type**: Sparse-to-dense interpolation
+- **Gist**:
+	- Prove that feeding image edges as one of the input to the network can bring the great benefit.
+	- Define a lateral dependency loss which pushes the distance between neighboring pixels to be similar to the distance in the ground truth flow.
+
+
 
 ## Dataset
 
